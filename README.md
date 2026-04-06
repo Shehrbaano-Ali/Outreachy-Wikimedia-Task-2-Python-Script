@@ -123,5 +123,5 @@ All code and logic were manually verified and implemented by me. The AI served a
 
 ---
 *Here is link to my [Blog](https://shehrbanoalii.hashnode.dev/from-url-verification-to-quality-evaluation-engineering-a-wikidata-metadata-scoring-prototype)*  
-*This work is submitted for the Outreachy May 2026 internship application for the Wikimedia Project.*  
+*This work is submitted for the Outreachy 2026 internship application for the Wikimedia Project.*  
 *~Shehrbano Ali*
