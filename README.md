@@ -122,7 +122,6 @@ Infrastructure Troubleshooting: Assisting in the migration from Render to Python
 All code and logic were manually verified and implemented by me. The AI served as a guide to accelerate understanding of cloud deployment configurations.
 
 ---
-📝 [Read my Blog post for this task](https://shehrbanoalii.hashnode.dev/from-url-verification-to-quality-evaluation-engineering-a-wikidata-metadata-scoring-prototype)
-This work is submitted for the Outreachy May 2026 internship application for the Wikimedia Project.
-
+*Here is link to my [Blog](https://shehrbanoalii.hashnode.dev/from-url-verification-to-quality-evaluation-engineering-a-wikidata-metadata-scoring-prototype)*  
+*This work is submitted for the Outreachy May 2026 internship application for the Wikimedia Project.*  
 *~Shehrbano Ali*
