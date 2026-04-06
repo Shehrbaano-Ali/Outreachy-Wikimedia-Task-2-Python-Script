@@ -13,20 +13,8 @@
 ## 🔗 LINKS
 
 ### 🌐 [Click here to view the LIVE Production Prototype](https://shehrbanoali.pythonanywhere.com/)
-*(Note: Link will be active once Render deployment is complete)*
+*(Note: This Link is running in 'PythonAnywhere')*
 
-### 🛤️ [Local Logic Terminal](http://127.0.0.1:5000)
-*(For mentors running the engine locally on their own machines)*
-
----
-
-## 🚀 Project Overview: Lusophone Railway Terminal
-This project is an automated data integrity pipeline designed to audit a dataset of 171 URLs. It serves as a functional prototype for **[Proposal #8](https://meta.wikimedia.org/wiki/Lista_de_desejos_tecnol%C3%B3gicos_da_lusofonia/2025/Propostas/Ferramenta_de_pontua%C3%A7%C3%A3o_para_edi%C3%A7%C3%B5es_no_Wikidata)**: The Wikidata Quality Scorer.
-
-### 🛠️ Key Features
-* **Station 1 (Compliance):** Batch verification of URL connectivity in the required `(STATUS) URL` format.
-* **Station 2 (Innovation):** A metadata assessment engine that calculates a "Wikiscore" based on the completeness of Wikidata entities.
-* **Technical Stack:** Python (Flask), JavaScript (Asynchronous Fetch), and the Wikidata API.
 
 ---
 
@@ -38,9 +26,22 @@ Identifying the technical methodology and explaining HTTP status codes to the us
 ![Operational Briefing](01-briefing-modal.png)
 
 ### 2. Live Audit Terminal
-Real-time output of the 171 URL dataset, displaying clear status verification for each "cargo unit."
+Real-time output of the 171 URL dataset, displaying clear status verification for each URL.
 
 ![Audit Results](02-audit-results.png)
+
+
+---
+
+## Project Overview: Lusophone Railway Terminal
+This project is an automated data integrity pipeline designed to audit a dataset of 171 URLs. It serves as a functional prototype for **[Proposal #8](https://meta.wikimedia.org/wiki/Lista_de_desejos_tecnol%C3%B3gicos_da_lusofonia/2025/Propostas/Ferramenta_de_pontua%C3%A7%C3%A3o_para_edi%C3%A7%C3%B5es_no_Wikidata)**: The Wikidata Quality Scorer.
+
+###  Key Features
+* **Station 1 (Compliance):** Batch verification of URL connectivity in the required `(STATUS) URL` format.
+* **Station 2 (Innovation):** A metadata assessment engine that calculates a "Wikiscore" based on the completeness of Wikidata entities.
+* **Technical Stack:** Python (Flask), JavaScript (Asynchronous Fetch), and the Wikidata API.
+
+
 
 ---
 
