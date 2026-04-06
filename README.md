@@ -6,7 +6,7 @@
 **Program:** Outreachy May 2026 Cohort  
 **Project:** Addressing the lusophone technological wishlist proposals  
 **Date:** April 6, 2026  
-**Task:** [Task 2 - Create a Python script to audit URL status codes](https://phabricator.wikimedia.org/T418284)
+**Task:** [Task 2 - Create a Python script to audit URL status codes](https://phabricator.wikimedia.org/T418286)
 
 ---
 
@@ -45,7 +45,7 @@ Real-time output of the 171 URL dataset, displaying clear status verification fo
 ---
 
 ## Introduction
-This repository contains my submission for **Task 2** of the Outreachy 2026 contribution period for Wikimedia. This task is part of **T418284: Addressing the lusophone technological wishlist proposals**.
+This repository contains my submission for **Task 2** of the Outreachy 2026 contribution period for Wikimedia. This task is part of ****Task:** [T418284: Addressing the lusophone technological wishlist proposals](https://phabricator.wikimedia.org/T418284)**.
 
 The core requirement involved developing a Python script to parse a `.csv` dataset of Wikimedia-related URLs and retrieve their live HTTP status codes. To demonstrate the practical application of this logic, I extended the script into a web-based dashboard that automates the audit of these links, serving as a functional prototype for improving metadata reliability.
 
@@ -79,10 +79,14 @@ except:
     return jsonify({'status': 'FAILED'})
 ```
 ---
-## Beyond the Task: Project Prototype
-While the primary task was a script-based check, I developed a web-based **Status Auditor** prototype to show the application of this logic to **Wishlist Proposal #8**:
+## Beyond the Task: [Project Prototype](https://shehrbanoali.pythonanywhere.com/)
 
-* **Proposal #8 Relevance:** This demonstrates how a maintainer could use an automated auditor to ensure cross-project links between Wikidata and Commons remain active, preventing "dead-end" navigation for users.
+While Task 2 focuses on a backend status audit, the **Wikiscorer** feature integrated into this application serves as a functional prototype for **Wishlist Proposal #8**:
+
+* **Proposal #8:** [Ferramenta de pontuação para edições no Wikidata](https://meta.wikimedia.org/wiki/Lista_de_desejos_tecnol%C3%B3gicos_da_lusofonia/2025/Propostas/Ferramenta_de_pontua%C3%A7%C3%A3o_para_edi%C3%A7%C3%B5es_no_Wikidata) (Scoring tool for Wikidata edits).
+* **The Implementation:** By tapping into the Wikidata API (`wbgetentities`), the prototype calculates a real-time quality score for each entity. It assigns points based on the presence of **Labels**, **Descriptions**, and the depth of **Claims (Statements)**. 
+* **The Impact:** This tool makes it easy to find Wikidata pages that are missing important information. By giving each page a score, we can quickly see which items need more details, helping us reach the community's goal of making all data complete.
+
 
 ---
 
