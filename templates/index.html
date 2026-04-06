@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚂 Lusophone Railway Data Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rail-blue: #003366;
+            --rail-steel: #ced4da;
+            --rail-track: #495057;
+            --signal-green: #28a745;
+            --departure-bg: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .terminal-container {
+            width: 1000px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 2px solid var(--rail-blue);
+        }
+
+        .header {
+            background: var(--rail-blue);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid #ffc107; /* Safety Yellow Strip */
+        }
+
+        .header h1 { margin: 0; font-size: 2rem; letter-spacing: 2px; }
+        .header p { margin: 5px 0 0; opacity: 0.8; font-size: 0.9rem; }
+
+        .main-content { padding: 30px; }
+
+        /* Station Cards */
+        .station-card {
+            background: #f8f9fa;
+            border-left: 8px solid var(--rail-track);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .station-card::after {
+            content: '🚆';
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 1.5rem;
+            opacity: 0.2;
+        }
+
+        h3 { margin-top: 0; color: var(--rail-blue); display: flex; align-items: center; gap: 10px; }
+
+        textarea {
+            width: 100%;
+            height: 180px;
+            border: 2px solid var(--rail-steel);
+            border-radius: 4px;
+            padding: 15px;
+            font-family: 'Share Tech Mono', monospace;
+            background: #ffffff;
+            box-sizing: border-box;
+        }
+
+        /* Control Buttons */
+        .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        .rail-btn {
+            padding: 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #btn1 { background: var(--rail-track); color: white; }
+        #btn1:hover { background: #343a40; }
+
+        #btn2 { background: var(--signal-green); color: white; }
+        #btn2:hover:not(:disabled) { background: #218838; }
+        #btn2:disabled { background: var(--rail-steel); cursor: not-allowed; }
+
+        /* Departure Board Style */
+        .departure-board {
+            background: var(--departure-bg);
+            color: #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            height: 400px;
+            overflow-y: auto;
+            font-family: 'Share Tech Mono', monospace;
+            border: 4px solid #333;
+            box-shadow: inset 0 0 10px #000;
+        }
+
+        .board-line {
+            border-bottom: 1px solid #333;
+            padding: 5px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .score-line { color: #00ff41; background: rgba(0,255,65,0.05); padding: 10px; margin: 10px 0; border-left: 3px solid #00ff41; }
+
+        /* Modal (Pop-up) Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8); 
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-left: 10px solid var(--rail-blue);
+            width: 50%;
+            border-radius: 8px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-header { color: var(--rail-blue); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px; }
+        .modal-footer { margin-top: 20px; text-align: right; }
+        .close-btn { background: var(--rail-blue); color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="terminal-container">
+    <div class="header">
+        <h1>LUSOPHONE RAILWAY TERMINAL</h1>
+        <p>Wikimedia Task 2 • URL Scanner & Wikiscorer</p>
+    </div>
+
+    <div class="main-content">
+        <div class="station-card">
+            <h3>📍 Station 0: Loading Cargo (URL Dataset)</h3>
+            <textarea id="urlInput">http://jogandocomelas.com.br/rosana-augusto-jogadora-do-santos-e-da-selecao-brasileira-anuncia-aposentadoria/
+https://www.fifa.com/womensolympic/news/y=2016/m=8/news=germany-and-canada-don-red-to-win-medals-2823027.html
+https://www.terra.com.br/esportes/futebol/futebol-feminino/bia-zaneratto-anuncia-saida-de-time-da-coreia-do-sul-apos-sete-anos,b6aacdb26ce01980fa6712304446966a3uasx6g1.html
+https://ge.globo.com/sp/vale-do-paraiba-regiao/noticia/2014/12/sao-jose-vence-arsenal-e-conquista-mundial-feminino-de-clubes-no-japao.html
+https://www.ogol.com.br/jogador.php?id=91089&search=1&search_string=rosana&searchdb=1
+http://paginasmemoria.cruzeirodosul.inf.br/paginas/2000/12/18/20001218028520espa0800cruz.pdf
+https://www.espn.com.br/futebol/bola-de-prata/artigo/_/id/8242963/bola-de-prata-espnw-em-nome-do-avo-julia-bianchi-da-nova-cara-ao-futebol-feminino-e-fecha-temporada-como-a-melhor-do-brasil
+https://ludopedio.org.br/arquibancada/sissi-a-camisa-10-pioneira/
+https://www.cbf.com.br/amp/futebol-brasileiro/noticias/campeonato-brasileiro-feminino/premio-brasileirao-2021-bia-zaneratto-do-palmeiras-melhor-atacante
+https://ge.globo.com/blogs/dona-do-campinho/post/2018/06/18/formiga-vira-personagem-da-turma-da-monica.ghtml
+https://www.uol.com.br/esporte/futebol/ultimas-noticias/lancepress/2021/08/08/entenda-por-que-bia-zaneratto-nao-e-mais-jogadora-do-palmeiras.amp.htm
+http://www.saopaulofc.net/spfcpedia/conquistas
+https://www.terra.com.br/esportes/sidney/brasileiros/futebolf/maravilha.htm
+https://ge.globo.com/futebol/times/palmeiras/noticia/atacante-bia-zaneratto-se-despede-do-palmeiras-e-retorna-para-a-china.ghtml
+https://dados.museudofutebol.org.br/#/tipo:personalidades/614464,Rosana
+https://www.wikidata.org/wiki/Q115320
+https://www.wikidata.org/wiki/Q242630
+https://www.wikidata.org/wiki/Q231737
+https://www.wikidata.org/wiki/Q10378107
+https://www.wikidata.org/wiki/Q16323381</textarea>
+        </div>
+
+        <div class="controls">
+            <button class="rail-btn" id="btn1" onclick="runStation1()">🛤️ Station 1: Inspection</button>
+            <button class="rail-btn" id="btn2" onclick="runStation2()" disabled>🏁 Station 2: Final Terminal</button>
+        </div>
+
+        <div class="departure-board" id="results">
+            [SYSTEM] WAITING FOR CARGO...
+        </div>
+    </div>
+</div>
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <div class="modal-header"><h2>📋 URLs SCANNER </h2></div>
+        <p><b>WHY:</b> To ensure the URLs are safe  to use. Broken links lead to a poor user experience(UX).</p>
+        <p><b>How It Works:</b> Our Python engine sends a HTTP GET Request to each server. 
+           <ul>
+               <b>If;</b>  
+               <p></p>
+               <li><b>(200):</b> Track is Working</li>
+               <p></p>
+               <li><b>(404/FAILED):</b> Track is Broken</li>
+           </ul>
+        </p>
+        <div class="modal-footer"><button class="close-btn" onclick="closeAndRun(1)">⛶𝄃𝄂 START SCANNING </button></div>
+    </div>
+</div>
+
+<div id="modal2" class="modal">
+    <div class="modal-content">
+        <div class="modal-header"><h2> 🎯 Wikiscorer</h2></div>
+        <p><b>WHY:</b> This is a prototype for <b>Proposal #8</b>. We don't just want to know if a link works; we want to know if the data inside is High Quality.</p>
+        <p><b>How It Works:</b> We tap into the <b>Wikidata API</b> to audit the Data Facts. We give points for:
+            <ul>
+                <li>Labels (Identity) </li>
+                <li>Total Claims </li>
+            </ul>
+            A higher score means the athlete's digital profile is Feature Complete.
+        </p>
+        <div class="modal-footer"><button class="close-btn" onclick="closeAndRun(2)">★START SCORING★</button></div>
+    </div>
+</div>
+<script>
+    let urlList = [];
+
+    // --- STEP 1: ---
+    // These functions run when we click the buttons on the main screen
+    function runStation1() {
+        document.getElementById('modal1').style.display = "block";
+    }
+
+    function runStation2() {
+        document.getElementById('modal2').style.display = "block";
+    }
+
+    // --- STEP 2: ---
+    // This runs when we click START inside the pop-up
+    async function closeAndRun(station) {
+        if (station === 1) {
+            document.getElementById('modal1').style.display = "none";
+            await startInspection(); // This calls the real logic below
+        } else {
+            document.getElementById('modal2').style.display = "none";
+            await startScoring(); // This calls the real scoring logic below
+        }
+    }
+
+    // --- STEP 3: STATION 1 LOGIC (The Inspection) ---
+    async function startInspection() {
+        const text = document.getElementById('urlInput').value;
+        urlList = text.split('\n').filter(u => u.trim() !== "");
+        const resDiv = document.getElementById('results');
+        
+        resDiv.innerHTML = "<b>[STATUS CODE] URL...</b><br>";
+        
+        for (let url of urlList) {
+            try {
+                const response = await fetch('/check_status', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({url: url})
+                });
+                const data = await response.json();
+                
+                // 100% Compliant Format: (STATUS) URL
+                resDiv.innerHTML += `<div class="board-line">(${data.status}) ${url}</div>`;
+                resDiv.scrollTop = resDiv.scrollHeight;
+            } catch (e) {
+                resDiv.innerHTML += `<div class="board-line">(FAILED) ${url}</div>`;
+            }
+        }
+        resDiv.innerHTML += "<br>🚂 <b>STATION 1 INSPECTION COMPLETED.</b><br>";
+        document.getElementById('btn2').disabled = false;
+    }
+
+    // --- STEP 4: STATION 2 LOGIC (The Scoring) ---
+    async function startScoring() {
+        const resDiv = document.getElementById('results');
+        
+        for (let url of urlList) {
+            try {
+                const response = await fetch('/get_score', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({url: url})
+                });
+                const data = await response.json();
+                if (data.score) {
+                    resDiv.innerHTML += `<div class="score-line">📊 QID: ${data.qid} | WIKISCORE: ${data.score} | UNIT: ${url}</div>`;
+                    resDiv.scrollTop = resDiv.scrollHeight;
+                }
+            } catch (e) {
+                console.error("Error scoring: " + url);
+            }
+        }
+        resDiv.innerHTML += "<br>🏁 <b>END OF LINE. DATA TERMINATED.</b>";
+    }
+</script>
+
+</body>
+</html>
