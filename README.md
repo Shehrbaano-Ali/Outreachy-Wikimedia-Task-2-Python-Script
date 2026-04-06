@@ -49,6 +49,7 @@ This repository contains my submission for **Task 2** of the Outreachy 2026 cont
 
 The core requirement involved developing a Python script to parse a `.csv` dataset of Wikimedia-related URLs and retrieve their live HTTP status codes. To demonstrate the practical application of this logic, I extended the script into a web-based dashboard that automates the audit of these links, serving as a functional prototype for improving metadata reliability.
 
+---
 ## Objectives
 * **Parse CSV Data:** Implement Python logic to extract URLs from `Task 2 - Intern.csv`.
 * **Automated Auditing:** Utilize the `requests` library to fetch real-time HTTP status codes.
@@ -56,14 +57,19 @@ The core requirement involved developing a Python script to parse a `.csv` datas
 * **Cloud Integration:** Deploy the operational script to PythonAnywhere for community access.
 * **Document Findings:** Provide a technical breakdown of the audit process.
 
+---
 ## Implementation Details
-The solution is implemented using **Python 3.13** and the **Flask** micro-framework. It utilizes the `requests` library for network operations and `csv` for data manipulation. The backend is designed to be lightweight and scalable for Wikimedia-related tasks.
+This project provides two ways to audit the Wikimedia dataset:
+1.  **CLI Script (`script.py`):** A lightweight Python script that reads directly from `Task 2 - Intern.csv` and prints status codes to the terminal as requested.
+2.  **Web Dashboard (`app.py`):** A Flask-based prototype that visualizes the audit process and calculates "Wikiscores" for Wikidata entities.
 
+---
 ## Verification Logic & Error Handling
 During development, I focused on ensuring the script remains stable even when encountering broken or restricted links.
 * **The Challenge:** Many URLs in the dataset may point to dead servers or have restricted access, which can cause a standard script to crash.
 * **The Solution:** I implemented a robust `try-except` block within the audit loop. This ensures that even if a URL fails to connect (due to DNS or SSL issues), the script catches the error and reports it as **FAILED** instead of stopping the entire execution.
 
+---
 ```python
 # Implementation of error-resistant auditing
 try:
@@ -85,56 +91,23 @@ While the primary task was a script-based check, I developed a web-based **Statu
 * **Server-Side Versatility:** Python provides a robust environment for network tasks that can eventually be integrated into larger Wikimedia tools like Pywikibot.
 
 ---
-
 ## Repository Structure
 ```text
 Outreachy-Wikimedia-Task-2-Python-Script/
 │
 ├── templates/
-│   └── index.html        # UI for the Status Auditor prototype
-├── 01-briefing-modal.png # Screenshot: Prototype UI/Instruction
-├── 02-audit-results.png  # Screenshot: Status code audit results
+│   └── index.html        # UI for the Web Terminal prototype
+├── 01-briefing-modal.png # Screenshot: Prototype UI
+├── 02-audit-results.png  # Screenshot: Audit results
 ├── LICENSE               # MIT License
-├── README.md             # Analytical documentation (this file)
-├── Task 2 - Intern.csv   # The source dataset provided by mentors
-├── app.py                # Core Python/Flask audit logic
-└── requirements.txt      # Project dependencies (Flask, Requests)
+├── README.md             # Analytical documentation
+├── Task 2 - Intern.csv   # The source dataset
+├── app.py                # Flask-based Web Terminal logic
+├── requirements.txt      # Dependencies (Flask, Requests)
+└── script.py             # Official CSV parsing script (Task Requirement)
 ```
----
-
-Gemini said
-Here is the final section of your README in a clean, copy-pasteable Markdown format. This covers everything from the "Project Prototype" section through to your signature.
-
-Markdown
-## Beyond the Task: Project Prototype
-While the primary task was a script-based check, I developed a web-based **Status Auditor** prototype to show the application of this logic to **Wishlist Proposal #8**:
-
-* **Proposal #8 Relevance:** This demonstrates how a maintainer could use an automated auditor to ensure cross-project links between Wikidata and Commons remain active, preventing "dead-end" navigation for users.
 
 ---
-
-## Key Findings
-* **Resilience:** Handling network exceptions is as important as the core logic when dealing with large, diverse datasets of external URLs.
-* **Server-Side Versatility:** Python provides a robust environment for network tasks that can eventually be integrated into larger Wikimedia tools like Pywikibot.
-
----
-
-## Repository Structure
-```text
-Outreachy-Wikimedia-Task-2-Python-Script/
-│
-├── templates/
-│   └── index.html        # UI for the Status Auditor prototype
-├── 01-briefing-modal.png # Screenshot: Prototype UI/Instruction
-├── 02-audit-results.png  # Screenshot: Status code audit results
-├── LICENSE               # MIT License
-├── README.md             # Analytical documentation (this file)
-├── Task 2 - Intern.csv   # The source dataset provided by mentors
-├── app.py                # Core Python/Flask audit logic
-└── requirements.txt      # Project dependencies (Flask, Requests)
-```
----
-
 ## AI Usage
 I utilized ChatGPT for:
 
