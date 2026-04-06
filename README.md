@@ -10,6 +10,16 @@
 
 ---
 
+## 🔗 LINKS
+
+### 🌐 [Click here to view the LIVE Production Prototype](https://lusophone-railway-audit.onrender.com)
+*(Note: Link will be active once Render deployment is complete)*
+
+### 🛤️ [Local Logic Terminal](http://127.0.0.1:5000)
+*(For mentors running the engine locally on their own machines)*
+
+---
+
 ## 🚀 Project Overview: Lusophone Railway Terminal
 This project is an automated data integrity pipeline designed to audit a dataset of 171 URLs. It serves as a functional prototype for **[Proposal #8](https://meta.wikimedia.org/wiki/Lista_de_desejos_tecnol%C3%B3gicos_da_lusofonia/2025/Propostas/Ferramenta_de_pontua%C3%A7%C3%A3o_para_edi%C3%A7%C3%B5es_no_Wikidata)**: The Wikidata Quality Scorer.
 
@@ -20,22 +30,22 @@ This project is an automated data integrity pipeline designed to audit a dataset
 
 ---
 
-## 🎥 Visual Overview
+## 📸 Visual Overview
 
 ### 1. Operational Logic & Documentation
-The system incorporates "Signal Operator Briefings" to explain the technical methodology (HTTP status codes and API logic) before the audit begins.
+Identifying the technical methodology and explaining HTTP status codes to the user via interactive briefings.
 
-![Briefing Modal](01-briefing.png)
+![Operational Briefing](01-briefing-modal.png)
 
 ### 2. Live Audit Terminal
-Real-time output of 171 URLs, displaying clear status verification for each "cargo unit."
+Real-time output of the 171 URL dataset, displaying clear status verification for each "cargo unit."
 
-![Audit Results](02-results.png)
+![Audit Results](02-audit-results.png)
 
 ---
 
 ## 💻 Technical Setup
-To run the terminal locally:
+To run the terminal locally and access the link above:
 
 1. **Install Dependencies:**
    ```bash
