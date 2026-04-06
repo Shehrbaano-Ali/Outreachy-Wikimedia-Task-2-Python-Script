@@ -45,7 +45,7 @@ Real-time output of the 171 URL dataset, displaying clear status verification fo
 ---
 
 ## Introduction
-This repository contains my submission for **Task 2** of the Outreachy 2026 contribution period for Wikimedia. This task is part of ****Task:** [T418284: Addressing the lusophone technological wishlist proposals](https://phabricator.wikimedia.org/T418284)**.
+This repository contains my submission for **Task 2** of the Outreachy 2026 contribution period for Wikimedia. This task is part of **Task:** [T418284: Addressing the lusophone technological wishlist proposals](https://phabricator.wikimedia.org/T418284)**.
 
 The core requirement involved developing a Python script to parse a `.csv` dataset of Wikimedia-related URLs and retrieve their live HTTP status codes. To demonstrate the practical application of this logic, I extended the script into a web-based dashboard that automates the audit of these links, serving as a functional prototype for improving metadata reliability.
 
