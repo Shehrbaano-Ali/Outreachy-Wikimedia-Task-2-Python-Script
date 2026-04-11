@@ -35,6 +35,16 @@ Here I prioritized Actionable Verbosity. A generic FAILED message doesn't help a
 
 ![Audit Results](https://github.com/Shehrbaano-Ali/Outreachy-Wikimedia-Task-2-Python-Script/blob/main/02-audit-results.png)
 
+### 3. Wikidata Quality Analysis
+
+This section visualizes the **Wikiscorer prototype**, utilizing dynamic visual analytics to provide a real-time quality gauge for Wikidata entities.
+
+* **High-Quality Entities:** Items with a score $> 5$ are highlighted in **Signal Green** (★ HIGH QUALITY).
+* **Needs Improvement:** Items with lower scores receive a **Safety Yellow** warning, automatically flagging them for metadata enhancement.
+
+![Wikiscore Analysis](03-wikiscore-analysis.png)
+
+
 ---
 
 # Table of Contents
@@ -102,7 +112,6 @@ After initial development, I refined the system based on mentor feedback:
 
 * **Header Robustness:** Implemented next(reader) in the Python script and a .filter() method in the JavaScript UI to prevent the urls header from being treated as a link.
 * **Data Integrity:** The tool was engineered to handle *dirty data* (such as the unquoted comma in the Yahoo URL) through string manipulation (join and strip) rather than modifying the original dataset.
-* **Visual Analytics:** Added a dynamic *Wikiscore* visual gauge. Entities with a score $> 5$ are highlighted in Signal Green (★ HIGH QUALITY), while lower scores receive a Safety Yellow warning to flag items needing metadata improvement.
 
 ---
 
