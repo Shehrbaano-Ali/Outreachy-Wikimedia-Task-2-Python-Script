@@ -20,13 +20,18 @@
 
 ## 📸 Visual Overview
 
-### 1. Operational Logic & Documentation
-Identifying the technical methodology and explaining HTTP status codes to the user via interactive briefings.
+### 1. Operational Logic & Documentation(Updated Version)
+
+This now includes interactive briefings that explain the technical methodology, specifically highlighting how the system handles Header Skipping and Diagnostic Error Reporting.
 
 ![Operational Briefing](https://github.com/Shehrbaano-Ali/Outreachy-Wikimedia-Task-2-Python-Script/blob/main/01-briefing-model.png)
 
-### 2. Live Audit Terminal
-Real-time output of the 171 URL dataset, displaying clear status verification for each URL.
+### 2. Live Audit Terminal(Updated Version)
+
+Here I prioritized Actionable Verbosity. A generic FAILED message doesn't help a developer fix a link. I implemented a robust try-except block that extracts the specific Exception Name and HTTP Reason Phrase. 
+
+* **Refined Error Catching:** Instead of a silent failure, the tool identifies the type of crash (e.g., ReadTimeout, ProxyError).
+* **Human-Readable Status:** Every status code is paired with its official reason phrase (e.g., 200 OK, 403 Forbidden).
 
 ![Audit Results](https://github.com/Shehrbaano-Ali/Outreachy-Wikimedia-Task-2-Python-Script/blob/main/02-audit-results.png)
 
@@ -71,12 +76,15 @@ During development, I focused on ensuring the script remains stable even when en
 
 ---
 ```python
-# Implementation of error-resistant auditing
+# Enhanced implementation of diagnostic auditing
 try:
     res = requests.get(url, headers=HEADERS, timeout=5)
-    return jsonify({'status': res.status_code})
-except:
-    return jsonify({'status': 'FAILED'})
+    # Returns the code + the reason (e.g., "404 Not Found")
+    return jsonify({'status': f"{res.status_code} {res.reason}"})
+except requests.exceptions.RequestException as e:
+    # Captures the specific name of the error for the user
+    error_name = type(e).__name__
+return jsonify({'status': f'FAILED ({error_name})'})
 ```
 ---
 ## Beyond the Task: [Project Prototype](https://shehrbanoali.pythonanywhere.com/)
@@ -90,9 +98,19 @@ While Task 2 focuses on a backend status audit, the **Wikiscorer** feature integ
 
 ---
 
+## Iterative Improvements(Post-Feedback)
+After initial development, I refined the system based on mentor feedback:
+
+* **Header Robustness:** Implemented next(reader) in the Python script and a .filter() method in the JavaScript UI to prevent the urls header from being treated as a link.
+* **Data Integrity:** The tool was engineered to handle *dirty data* (such as the unquoted comma in the Yahoo URL) through string manipulation (join and strip) rather than modifying the original dataset.
+* **Visual Analytics:** Added a dynamic *Wikiscore* visual gauge. Entities with a score $> 5$ are highlighted in Signal Green (★ HIGH QUALITY), while lower scores receive a Safety Yellow warning to flag items needing metadata improvement.
+
+---
+
 ## Key Findings
 * **Resilience:** Handling network exceptions is as important as the core logic when dealing with large, diverse datasets of external URLs.
 * **Server-Side Versatility:** Python provides a robust environment for network tasks that can eventually be integrated into larger Wikimedia tools like Pywikibot.
+* **Environmental Awareness:** Deploying on PythonAnywhere highlighted the importance of "Whitelisting." The tool successfully identifies ProxyError as a hosting restriction rather than a code failure, proving the value of detailed exception logging.
 
 ---
 ## Repository Structure
@@ -101,7 +119,7 @@ Outreachy-Wikimedia-Task-2-Python-Script/
 │
 ├── templates/
 │   └── index.html        # UI for the Web Terminal prototype
-├── 01-briefing-modal.png # Screenshot: Prototype UI
+├── 01-briefing-model.png # Screenshot: Prototype UI
 ├── 02-audit-results.png  # Screenshot: Audit results
 ├── LICENSE               # MIT License
 ├── README.md             # Analytical documentation
