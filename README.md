@@ -23,7 +23,7 @@
 ### 1. Operational Logic & Documentation
 Identifying the technical methodology and explaining HTTP status codes to the user via interactive briefings.
 
-![Operational Briefing](01-briefing-modal.png)
+![Operational Briefing](https://github.com/Shehrbaano-Ali/Outreachy-Wikimedia-Task-2-Python-Script/blob/main/01-briefing-model.png)
 
 ### 2. Live Audit Terminal
 Real-time output of the 171 URL dataset, displaying clear status verification for each URL.
