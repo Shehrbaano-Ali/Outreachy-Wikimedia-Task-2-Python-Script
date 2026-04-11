@@ -28,7 +28,7 @@ Identifying the technical methodology and explaining HTTP status codes to the us
 ### 2. Live Audit Terminal
 Real-time output of the 171 URL dataset, displaying clear status verification for each URL.
 
-![Audit Results](02-audit-results.png)
+![Audit Results](https://github.com/Shehrbaano-Ali/Outreachy-Wikimedia-Task-2-Python-Script/blob/main/02-audit-results.png)
 
 ---
 
