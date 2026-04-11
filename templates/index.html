@@ -123,7 +123,17 @@
             justify-content: space-between;
         }
 
-        .score-line { color: #00ff41; background: rgba(0,255,65,0.05); padding: 10px; margin: 10px 0; border-left: 3px solid #00ff41; }
+        .score-line { 
+            padding: 15px; 
+            margin: 12px 0; 
+            border-left: 6px solid; /* Thickness is fixed, but JS will set the color */
+            font-weight: bold;
+            font-family: 'Share Tech Mono', monospace;
+            background: rgba(0, 0, 0, 0.05); /* Light tint to make it pop */
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+        }
 
         /* Modal (Pop-up) Styles */
         .modal {
@@ -227,8 +237,6 @@ https://www.wikidata.org/wiki/Q16323381</textarea>
 <script>
     let urlList = [];
 
-    // --- STEP 1: ---
-    // These functions run when we click the buttons on the main screen
     function runStation1() {
         document.getElementById('modal1').style.display = "block";
     }
@@ -237,25 +245,27 @@ https://www.wikidata.org/wiki/Q16323381</textarea>
         document.getElementById('modal2').style.display = "block";
     }
 
-    // --- STEP 2: ---
-    // This runs when we click START inside the pop-up
     async function closeAndRun(station) {
         if (station === 1) {
             document.getElementById('modal1').style.display = "none";
-            await startInspection(); // This calls the real logic below
+            await startInspection(); 
         } else {
             document.getElementById('modal2').style.display = "none";
-            await startScoring(); // This calls the real scoring logic below
+            await startScoring(); 
         }
     }
 
-    // --- STEP 3: STATION 1 LOGIC (The Inspection) ---
+    // STATION 1: INSPECTION
     async function startInspection() {
         const text = document.getElementById('urlInput').value;
-        urlList = text.split('\n').filter(u => u.trim() !== "");
-        const resDiv = document.getElementById('results');
         
-        resDiv.innerHTML = "<b>[STATUS CODE] URL...</b><br>";
+        // I filter out the header urls so the scanner doesn't try to check a word.
+        urlList = text.split('\n')
+                      .map(u => u.trim())
+                      .filter(u => u !== "" && u.toLowerCase() !== "urls");
+
+        const resDiv = document.getElementById('results');
+        resDiv.innerHTML = "<b>[STATUS] URL...</b><br>";
         
         for (let url of urlList) {
             try {
@@ -266,18 +276,18 @@ https://www.wikidata.org/wiki/Q16323381</textarea>
                 });
                 const data = await response.json();
                 
-                // 100% Compliant Format: (STATUS) URL
+                // This now displays FAILED (TimeoutError)
                 resDiv.innerHTML += `<div class="board-line">(${data.status}) ${url}</div>`;
                 resDiv.scrollTop = resDiv.scrollHeight;
             } catch (e) {
-                resDiv.innerHTML += `<div class="board-line">(FAILED) ${url}</div>`;
+                resDiv.innerHTML += `<div class="board-line">(SYSTEM ERROR) ${url}</div>`;
             }
         }
         resDiv.innerHTML += "<br>🚂 <b>STATION 1 INSPECTION COMPLETED.</b><br>";
         document.getElementById('btn2').disabled = false;
     }
 
-    // --- STEP 4: STATION 2 LOGIC (The Scoring) ---
+    // STATION 2: SCORING
     async function startScoring() {
         const resDiv = document.getElementById('results');
         
@@ -289,17 +299,27 @@ https://www.wikidata.org/wiki/Q16323381</textarea>
                     body: JSON.stringify({url: url})
                 });
                 const data = await response.json();
-                if (data.score) {
-                    resDiv.innerHTML += `<div class="score-line">📊 QID: ${data.qid} | WIKISCORE: ${data.score} | UNIT: ${url}</div>`;
-                    resDiv.scrollTop = resDiv.scrollHeight;
+
+                if (data.score !== null && data.score !== undefined) {
+                    // --- THE SMART LOGIC ---
+                    // If score > 5, use Signal Green. Otherwise, use Safety Yellow.
+                    let statusColor = data.score > 5 ? 'var(--signal-green)' : '#ffc107'; 
+                    let qualityTag = data.score > 5 ? '★ [HIGH QUALITY]' : '⚠ [NEEDS IMPROVEMENT]';
+
+                    resDiv.innerHTML += `
+                        <div class="score-line" style="border-left-color: ${statusColor}; color: ${statusColor};">
+                            📊 ${qualityTag} QID: ${data.qid} | WIKISCORE: ${data.score} | UNIT: ${url}
+                        </div>`;
+                } else if (data.error) {
+                    resDiv.innerHTML += `<div class="board-line" style="color: #ff4d4d;">[!] SCOPE ERROR: ${data.error} | ${url}</div>`;
                 }
+                resDiv.scrollTop = resDiv.scrollHeight;
             } catch (e) {
-                console.error("Error scoring: " + url);
+                console.error("Connection lost: " + url);
             }
         }
         resDiv.innerHTML += "<br>🏁 <b>END OF LINE. DATA TERMINATED.</b>";
     }
 </script>
-
 </body>
 </html>
