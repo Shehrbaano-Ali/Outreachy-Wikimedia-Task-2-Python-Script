@@ -111,6 +111,7 @@ While Task 2 focuses on a backend status audit, the **Wikiscorer** feature integ
 After initial development, I refined the system based on mentor feedback:
 
 * **Header Robustness:** Implemented next(reader) in the Python script and a .filter() method in the JavaScript UI to prevent the urls header from being treated as a link.
+* **Enhanced Diagnostic Reporting:** Replaced generic error flags with detailed exception logging. The terminal now identifies specific failure types (e.g., ProxyError, ReadTimeout) and includes official HTTP Reason Phrases (e.g., 404 Not Found, 200 OK, 403 Forbidden).
 * **Data Integrity:** The tool was engineered to handle *dirty data* (such as the unquoted comma in the Yahoo URL) through string manipulation (join and strip) rather than modifying the original dataset.
 
 ---
