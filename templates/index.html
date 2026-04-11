@@ -37,7 +37,7 @@
             color: white;
             padding: 30px;
             text-align: center;
-            border-bottom: 5px solid #ffc107; /* Safety Yellow Strip */
+            border-bottom: 5px solid #ffc107; 
         }
 
         .header h1 { margin: 0; font-size: 2rem; letter-spacing: 2px; }
@@ -102,7 +102,6 @@
         #btn2:hover:not(:disabled) { background: #218838; }
         #btn2:disabled { background: var(--rail-steel); cursor: not-allowed; }
 
-        /* Departure Board Style */
         .departure-board {
             background: var(--departure-bg);
             color: #ffc107;
@@ -126,10 +125,10 @@
         .score-line { 
             padding: 15px; 
             margin: 12px 0; 
-            border-left: 6px solid; /* Thickness is fixed, but JS will set the color */
+            border-left: 6px solid; 
             font-weight: bold;
             font-family: 'Share Tech Mono', monospace;
-            background: rgba(0, 0, 0, 0.05); /* Light tint to make it pop */
+            background: rgba(0, 0, 0, 0.05); 
             border-radius: 4px;
             display: flex;
             align-items: center;
@@ -301,8 +300,7 @@ https://www.wikidata.org/wiki/Q16323381</textarea>
                 const data = await response.json();
 
                 if (data.score !== null && data.score !== undefined) {
-                    // --- THE SMART LOGIC ---
-                    // If score > 5, use Signal Green. Otherwise, use Safety Yellow.
+                    // If score > 5, it uses Signal Green. Otherwise, it wil use Safety Yellow.
                     let statusColor = data.score > 5 ? 'var(--signal-green)' : '#ffc107'; 
                     let qualityTag = data.score > 5 ? '★ [HIGH QUALITY]' : '⚠ [NEEDS IMPROVEMENT]';
 
