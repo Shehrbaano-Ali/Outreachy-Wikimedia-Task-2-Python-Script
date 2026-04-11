@@ -3,7 +3,7 @@
 **Contributor:** Shehrbano Ali  
 **Email:** shehrbanoali2230@gmail.com  
 **Github:** [Shehrbaano-Ali](https://github.com/Shehrbaano-Ali)  
-**Program:** Outreachy May 2026 Cohort  
+**Program:** Outreachy 2026 Cohort  
 **Project:** Addressing the lusophone technological wishlist proposals  
 **Date:** April 6, 2026  
 **Task:** [Task 2 - Create a Python script to audit URL status codes](https://phabricator.wikimedia.org/T418286)
