@@ -110,7 +110,7 @@ After initial development, I refined the system based on mentor feedback:
 ## Key Findings
 * **Resilience:** Handling network exceptions is as important as the core logic when dealing with large, diverse datasets of external URLs.
 * **Server-Side Versatility:** Python provides a robust environment for network tasks that can eventually be integrated into larger Wikimedia tools like Pywikibot.
-* **Environmental Awareness:** Deploying on PythonAnywhere highlighted the importance of "Whitelisting." The tool successfully identifies ProxyError as a hosting restriction rather than a code failure, proving the value of detailed exception logging.
+* **Environmental Awareness:** Deploying on PythonAnywhere highlighted the importance of **Whitelisting**. The tool successfully identifies ProxyError as a hosting restriction rather than a code failure, proving the value of detailed exception logging.
 
 ---
 ## Repository Structure
