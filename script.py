@@ -25,7 +25,8 @@ def audit_csv():
                 if not row:
                     continue
                     
-                url = row[0].strip() # strip() removes accidental spaces
+                #Joins row with commas in case the URL contained one
+                url = ",".join(row).strip() 
                 
                 try:
                     # Timeout is crucial for large-scale audits
@@ -40,8 +41,9 @@ def audit_csv():
 
     except FileNotFoundError:
         print(f"Error: {file_path} not found. Please check the file name.")
+
     
     print("--- Audit Complete ---")
 
 if __name__ == "__main__":
-    audit_csv()
+    audit_csv()    
