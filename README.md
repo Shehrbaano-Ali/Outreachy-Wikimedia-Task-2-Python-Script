@@ -143,9 +143,8 @@ Outreachy-Wikimedia-Task-2-Python-Script/
 ## AI Usage
 I utilized ChatGPT for:
 
-Documentation Structure: Organizing this README to reflect systematic open-source analysis.
-
-Infrastructure Troubleshooting: Assisting in the migration from Render to PythonAnywhere during deployment.
+* **Documentation Structure:** Organizing this README to reflect systematic open-source analysis.
+* **Infrastructure Troubleshooting:** Assisting in the migration from Render to PythonAnywhere during deployment.
 
 All code and logic were manually verified and implemented by me. The AI served as a guide to accelerate understanding of cloud deployment configurations.
 
