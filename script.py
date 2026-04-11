@@ -27,17 +27,18 @@ def audit_csv():
                     
                 #Joins row with commas in case the URL contained one
                 url = ",".join(row).strip() 
-                
                 try:
                     # Timeout is crucial for large-scale audits
                     res = requests.get(url, headers=headers, timeout=5)
-                    print(f"[{res.status_code}] {url}")
+                    # res.reason will automatically provide names like OK or Not Found
+                    print(f"[{res.status_code} {res.reason}] {url}")
                 
                 # FIX 2: PRINTING THE SPECIFIC EXCEPTION NAME
                 except requests.exceptions.RequestException as e:
                     # Extracts name like 'ConnectionError' or 'ReadTimeout'
                     error_name = type(e).__name__ 
                     print(f"[FAILED: {error_name}] {url}")
+                
 
     except FileNotFoundError:
         print(f"Error: {file_path} not found. Please check the file name.")
