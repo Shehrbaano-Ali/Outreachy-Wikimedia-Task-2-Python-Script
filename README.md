@@ -82,9 +82,8 @@ try:
     # Returns the code + the reason (e.g., "404 Not Found")
     return jsonify({'status': f"{res.status_code} {res.reason}"})
 except requests.exceptions.RequestException as e:
-    # Captures the specific name of the error for the user
     error_name = type(e).__name__
-return jsonify({'status': f'FAILED ({error_name})'})
+    return jsonify({'status': f'FAILED ({error_name})'})
 ```
 ---
 ## Beyond the Task: [Project Prototype](https://shehrbanoali.pythonanywhere.com/)
