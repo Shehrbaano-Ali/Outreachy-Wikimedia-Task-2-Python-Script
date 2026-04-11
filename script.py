@@ -7,15 +7,22 @@ def audit_csv():
     
     try:
         with open(file_path, mode='r', encoding='utf-8') as file:
-            # using csv.reader(file)
             reader = csv.reader(file)
+            
+            # FIX 1: SKIPPING THE HEADER:
+            next(reader, None)
+            
             for row in reader:
-                url = row[0] # Takes the first column
+                url = row[0]
                 try:
                     res = requests.get(url, headers=headers, timeout=5)
                     print(f"({res.status_code}) {url}")
-                except:
-                    print(f"(FAILED) {url}")
+                
+                # FIX 2: NAMING THE EXCEPTIONS:
+                except requests.exceptions.RequestException as e:
+                    error_name = type(e).__name__ # Gets 'Timeout', 'ConnectionError', etc.
+                    print(f"(FAILED: {error_name}) {url}")
+
     except FileNotFoundError:
         print("Error: Task 2 - Intern.csv not found in directory.")
 
