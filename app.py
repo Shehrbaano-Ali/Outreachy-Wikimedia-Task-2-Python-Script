@@ -16,9 +16,10 @@ def check_status():
     try:
         # Timeout set to 5s to prevent the app from hanging on slow Lusophone servers
         res = requests.get(url, headers=HEADERS, timeout=5)
-        return jsonify({'status': res.status_code})
+        # This will send 200 OK or 404 Not Found to my website terminal
+        return jsonify({'status': f"{res.status_code} {res.reason}"})
     except requests.exceptions.RequestException as e:
-        # Capturing the name of the error (like ConnectionError or Timeout):
+        # This will help us capturing the name of the error (like ConnectionError or Timeout):
         error_name = type(e).__name__
         return jsonify({'status': f'FAILED ({error_name})'})
 
