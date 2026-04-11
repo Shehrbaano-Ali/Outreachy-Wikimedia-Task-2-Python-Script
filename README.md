@@ -1,4 +1,4 @@
-# Shehrbano Ali - Outreachy Task 2 Submission
+# Shehrbano Ali - Wikimedia Task 2 Submission
 
 **Contributor:** Shehrbano Ali  
 **Email:** shehrbanoali2230@gmail.com  
