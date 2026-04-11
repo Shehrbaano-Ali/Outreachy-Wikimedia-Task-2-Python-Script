@@ -130,6 +130,7 @@ Outreachy-Wikimedia-Task-2-Python-Script/
 │   └── index.html        # UI for the Web Terminal prototype
 ├── 01-briefing-model.png # Screenshot: Prototype UI
 ├── 02-audit-results.png  # Screenshot: Audit results
+├── 03-wikiscore-analysis.png # Screenshot: Wikidata Quality Scoring logic
 ├── LICENSE               # MIT License
 ├── README.md             # Analytical documentation
 ├── Task 2 - Intern.csv   # The source dataset
