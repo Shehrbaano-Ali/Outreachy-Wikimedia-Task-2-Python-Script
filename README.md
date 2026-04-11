@@ -31,7 +31,7 @@ This now includes interactive briefings that explain the technical methodology, 
 Here I prioritized Actionable Verbosity. A generic FAILED message doesn't help a developer fix a link. I implemented a robust try-except block that extracts the specific Exception Name and HTTP Reason Phrase. 
 
 * **Refined Error Catching:** Instead of a silent failure, the tool identifies the type of crash (e.g., ReadTimeout, ProxyError).
-* **Human-Readable Status:** Every status code is paired with its official reason phrase (e.g., 200 OK, 403 Forbidden).
+* **Human-Readable Status:** Every status code is paired with its official reason phrase (e.g., 200 OK, 403 Forbidden, 404 Not Found).
 
 ![Audit Results](https://github.com/Shehrbaano-Ali/Outreachy-Wikimedia-Task-2-Python-Script/blob/main/02-audit-results.png)
 
